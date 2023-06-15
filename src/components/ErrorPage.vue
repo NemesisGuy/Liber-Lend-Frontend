@@ -1,0 +1,37 @@
+<template>
+    <div class="error-page">
+      <h1> Liber Lend</h1>
+        <h2>Oops!</h2>
+        <p>Something went wrong.</p>
+        <p>Try again later.</p>
+<!--      add error icon here from frontawesome-->
+
+
+
+
+    </div>
+</template>
+
+<style>
+.error-page {
+    background-color: #0D47A1;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 24px;
+}
+body {
+    color: #f1f1f1 ;
+    padding: 20px;
+    text-align: center;
+}
+</style>
+<script setup>
+</script>

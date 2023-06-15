@@ -1,78 +1,87 @@
 <template>
-  <div>
-    <h2>Signup</h2>
-    <form @submit.prevent="signup">
-      <input type="text" v-model="name" placeholder="Name" required />
-      <input type="email" v-model="email" placeholder="Email" required />
-      <input type="password" v-model="password" placeholder="Password" required />
-      <input type="password" v-model="confirmpassword" placeholder="Confirm Password" required />
+  <div class="form-container" @submit.prevent="register">
+    <form>
+      <h2 class="form-header">Signup</h2>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="userName" name="userName" placeholder="Enter your username" v-model="user.userName" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" v-model="user.password" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" v-model="user.email" required>
+      </div>
+      <div class="form-group">
+        <label for="pictureUrl">Profile Picture URL:</label>
+        <input type="text" id="pictureUrl" name="pictureUrl" placeholder="Enter the URL of your profile picture" v-model="user.pictureUrl">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" v-model="user.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" v-model="user.lastName">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" v-model="user.phoneNumber">
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+      </div>
       <button type="submit">Signup</button>
+
+      <button @click="goToLogin">Login</button>
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import backendBaseUrl from '@/config';
-import Cookies from 'js-cookie';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-
+      user: {
+        userName: '',
+        email: '',
+        password: '',
+        pictureUrl: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+      },
     };
   },
   methods: {
-    signup() {
-      const userData = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      };
-
-      // Make an HTTP request to the backend signup endpoint using Axios
+    register() {
+      // Implement your registration logic here
+      // You can make an HTTP request to your backend API to handle the registration process
+      // You can use libraries like Axios or fetch to perform the HTTP request
+      // Example:
       axios
-          .post(`${backendBaseUrl}/api/v1/auth/signup`, userData)
+          .post('http://localhost:8080/api/users/register', this.user)
           .then(response => {
-            // Handle successful signup
-            console.log('Signup successful:', response.data);
+            // Handle success
+            console.log(response);
           })
           .catch(error => {
-            // Handle signup error
-            if (error.response) {
-              // The request was made and the server responded with a status code
-              if (error.response.status === 400) {
-                // Handle validation errors
-                console.error('Signup validation error:', error.response.data);
-              } else if (error.response.status === 403) {
-                // Handle authorization errors
-                console.error('Signup authorization error:', error.response.data);
-
-              } else {
-                // Handle other server errors
-                console.error('Signup server error:', error.response.data);
-              }
-            } else {
-              // The request was made but no response was received
-              console.error('Signup error:', error.message);
-            }
+            // Handle error
+            console.log(error);
           });
     },
-  },
-  created() {
-    // Set the CSRF token in the request headers
-    axios.interceptors.request.use(config => {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
-      config.headers['X-XSRF-TOKEN'] = csrfToken;
-      return config;
-    });
+    goToLogin() {
+      this.$router.push('/login');
+    },
   },
 };
 </script>
 
 <style scoped>
-/* Add your custom styles for the signup component here */
+/* Add your component-specific styles here */
 </style>
