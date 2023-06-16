@@ -20,7 +20,8 @@
           <td>{{ book.author }}</td>
           <td>{{ book.publisher }}</td>
           <td>{{ book.ISBN }}</td>
-          <td><button @click="deleteBook(book.id)">Delete</button></td>
+          <td><button @click="deleteBookPrompt(book.id)" class="btn-small">Delete</button></td>
+
         </tr>
         </tbody>
       </table>
@@ -74,6 +75,11 @@ export default {
             console.log(error);
             console.log('Book not deleted');
           });
+    },
+    deleteBookPrompt(bookId) {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        this.deleteBook(bookId);
+      }
     },
   },
   computed: {

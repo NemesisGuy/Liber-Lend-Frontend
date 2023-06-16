@@ -47,7 +47,7 @@
             </button>
           </td>
           <td>
-            <button @click="deleteBook(book.id)" class="btn-small">Delete</button>
+            <button @click="deleteBookPrompt(book.id)" class="btn-small">Delete</button>
           </td>
         </tr>
         </tbody>
@@ -127,6 +127,11 @@ export default {
             console.log('Book not updated');
           });
     },
+    deleteBookPrompt(bookId) {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        this.deleteBook(bookId);
+      }
+    },
   },
   computed: {
     sortedBooks() {
@@ -157,6 +162,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 /* Add custom styles for the component */

@@ -3,8 +3,8 @@
   <nav>
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="admin/users/all">List User</router-link></li>
-      <li><router-link to="api/books/all">Books</router-link></li>
+      <li><router-link to="/admin/users/all">List User</router-link></li>
+      <li><router-link to="/api/books/all">Book List </router-link></li>
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/signup">Sign Up</router-link></li>
       <li><router-link to="/admin">Admin Dashboard</router-link></li>

@@ -24,7 +24,10 @@
           <td>{{ user.lastName }}</td>
           <td>{{ user.phoneNumber }}</td>
           <td>{{ user.role }}</td>
-          <td><button @click="deleteUser(user.id)">Delete</button></td>
+          <td>
+
+            <button @click="deleteUserPrompt(user.id)" class="btn-small">Delete</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -78,6 +81,11 @@ export default {
             console.log(error);
             console.log('User not deleted');
           });
+    },
+    deleteUserPrompt(userId) {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        this.deleteUser(userId);
+      }
     },
   },
   computed: {
