@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile">
+  <div v-if="user">
     <h1>User Profile</h1>
     <div class="profile-details">
       <div>
@@ -28,13 +28,17 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    User not found.
+  </div>
 </template>
+
 
 <script>
 import axios from 'axios';
 
 export default {
-  name: 'UserProfile',
+  name: 'ViewUser',
   data() {
     return {
       user: null,
@@ -45,11 +49,10 @@ export default {
   },
   methods: {
     fetchUserProfile() {
-      // Assuming you have the user ID or any other identifier to fetch the user's profile
-      const userId = '123'; // Replace with the actual user ID
+      const userId = this.$route.params.userId; // Check if the route parameter is correct
 
       axios
-          .get(`http://localhost:8080/api/user/${userId}`)
+          .get(`http://localhost:8080/api/admin/users/read/${userId}`)
           .then((response) => {
             this.user = response.data;
           })
@@ -62,5 +65,5 @@ export default {
 </script>
 
 <style scoped>
-
+/* Add your component's styles here */
 </style>

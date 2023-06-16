@@ -23,6 +23,8 @@ import UpdateBook from "@/components/Admin/Book/UpdateBook.vue";
 import SelectBook from "@/components/Admin/Book/SelectBook.vue";
 import ViewBook from "@/components/Admin/Book/ViewBook.vue";
 import BookList from "@/components/Admin/Book/BookList.vue";
+import Books from "@/components/Admin/Book/Books.vue";
+import Users from "@/components/Admin/User/Users.vue";
 
 // noinspection JSCheckFunctionSignatures
 
@@ -45,7 +47,7 @@ const router = createRouter({
             component: CreateUser,
         },
         {
-            path: '/admin/users/read',
+            path: '/admin/users/read/:userId',
             name: 'ViewUser',
             component: ViewUser,
         },
@@ -90,7 +92,7 @@ const router = createRouter({
             component: SelectBook,
         },
         {
-            path: '/admin/books/read',
+            path: '/admin/books/read/:id',
             name: 'ViewBook',
             component: ViewBook,
         },
@@ -99,6 +101,29 @@ const router = createRouter({
             name: 'BookList',
             component: BookList,
         },
+        {
+            path: '/admin/books',
+            component: Books,
+            children: [
+                { path: 'list', component: BookList },
+                { path: 'create', component: CreateBook},
+                { path: 'select', component: ViewBook },
+                { path: 'update', component: UpdateBook },
+                { path: 'delete', component: DeleteBook },
+            ],
+        },
+        {
+            path: '/admin/users',
+            component: Users,
+            children: [
+                { path: 'list', component: UserList },
+                { path: 'create', component: CreateUser },
+                { path: 'select', component: ViewUser },
+                { path: 'update', component: UpdateUser },
+                { path: 'delete', component: DeleteUser },
+            ],
+        },
+
         {
             path: '/error',
 

@@ -2,7 +2,7 @@
   <div class="sidebar admin-sidebar">
     <ul>
       <li>
-        <router-link to="#">
+        <router-link to="/admin/books">
           Books
           <ul class="submenu">
             <li><router-link to="/api/books/all">List Books</router-link></li>
@@ -14,7 +14,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="#">
+        <router-link to="/admin/users">
           Users
           <ul class="submenu">
             <li><router-link to="/admin/users/all">List Users</router-link></li>
