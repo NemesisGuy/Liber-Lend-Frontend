@@ -25,7 +25,7 @@ export default {
       // You can use the fetch API, Axios, or any other library of your choice
 
       // Example using fetch API
-      fetch('http://localhost:8080/')
+      fetch('http://localhost:8080/home')
           .then((response) => response.json())
           .then((data) => {
             this.loading = false;
