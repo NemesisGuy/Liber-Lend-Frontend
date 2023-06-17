@@ -1,4 +1,8 @@
 <template>
+  <div class="content-container">
+    <div class="card-container">
+
+
   <div v-if="user">
     <h1>User Profile</h1>
     <div class="profile-details">
@@ -31,6 +35,9 @@
   <div v-else>
     User not found.
   </div>
+  </div>
+  </div>
+
 </template>
 
 

@@ -25,6 +25,7 @@ import ViewBook from "@/components/Admin/Book/ViewBook.vue";
 import BookList from "@/components/Admin/Book/BookList.vue";
 import Books from "@/components/Admin/Book/Books.vue";
 import Users from "@/components/Admin/User/Users.vue";
+import EditBook from "@/components/Admin/Book/EditBook.vue";
 
 // noinspection JSCheckFunctionSignatures
 
@@ -122,6 +123,11 @@ const router = createRouter({
                 { path: 'update', component: UpdateUser },
                 { path: 'delete', component: DeleteUser },
             ],
+        },
+        {
+            path: "/admin/books/edit/:id",
+            component: EditBook,
+            name: "EditBook"
         },
 
         {
