@@ -1,37 +1,41 @@
 <template>
-  <div class="user-profile">
-    <h1>User Profile</h1>
-    <div v-if="user" class="profile-details">
-      <div>
-        <label>Username:</label>
-        <span>{{ user.userName }}</span>
+  <div class="card-container">
+    <div class="book-profile">
+        <h1>User Profile</h1>
+      <div v-if="user" class="profile-details">
+        <div>
+          <label>Username:</label>
+          <span>{{ user.userName }}</span>
+        </div>
+        <div>
+          <label>Email:</label>
+          <span>{{ user.email }}</span>
+        </div>
+        <div>
+          <label>First Name:</label>
+          <span>{{ user.firstName }}</span>
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <span>{{ user.lastName }}</span>
+        </div>
+        <div>
+          <label>Phone Number:</label>
+          <span>{{ user.phoneNumber }}</span>
+        </div>
+        <div>
+          <label>Role:</label>
+          <span>{{ user.role }}</span>
+        </div>
       </div>
-      <div>
-        <label>Email:</label>
-        <span>{{ user.email }}</span>
+      <div v-else>
+        <loading-modal v-if="loading" />
+        Loading user profile...
       </div>
-      <div>
-        <label>First Name:</label>
-        <span>{{ user.firstName }}</span>
-      </div>
-      <div>
-        <label>Last Name:</label>
-        <span>{{ user.lastName }}</span>
-      </div>
-      <div>
-        <label>Phone Number:</label>
-        <span>{{ user.phoneNumber }}</span>
-      </div>
-      <div>
-        <label>Role:</label>
-        <span>{{ user.role }}</span>
-      </div>
-    </div>
-    <div v-else>
-      <loading-modal v-if="loading" />
-      Loading user profile...
     </div>
   </div>
+
+
 </template>
 
 
@@ -75,5 +79,28 @@ export default {
 </script>
 
 <style scoped>
+.card-container {
 
+  padding: 50px;
+  justify-content: center;
+}
+.book-profile {
+  margin-top: 20px;
+}
+
+.book-profile h1 {
+  margin-bottom: 10px;
+}
+
+.profile-details div {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+span {
+  margin-left: 10px;
+}
 </style>
