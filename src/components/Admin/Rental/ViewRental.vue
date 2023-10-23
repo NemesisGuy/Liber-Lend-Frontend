@@ -1,6 +1,7 @@
 <template>
   <div class="card-container card-container-admin">
     <div class="form-container-admin">
+      <form>
 
       <div v-if="loading" class="loading">Loading...</div>
       <loading-modal v-if="loading" show></loading-modal>
@@ -84,7 +85,9 @@
           <p>Loading book rental profile... </p>
 
         </div>
+
       </div>
+      </form>
     </div>
   </div>
 

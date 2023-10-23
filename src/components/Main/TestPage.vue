@@ -1,23 +1,27 @@
 <template>
   <div class="card-container card-container-admin ">
     <div class="form-container-admin modal-test-container-height">
-      <div class="content-container modal-test-container-height">
-        <h1>Test Modals</h1>
-        <button @click="showLoadingModal" class="read-button button modal-button-width"> Show Loading Modal</button>
-        <button @click="showSuccessModal" class="accept-button button modal-button-width"> Show Success Modal</button>
-        <button @click="showFailureModal" class="deny-button button modal-button-width">Show Failure Modal</button>
+      <form>
+        <div class="content-container modal-test-container-height">
 
-        <button @click="showConfirmationModal" class="update-button button modal-button-width">Show Confirmation Modal</button>
+          <h1>Test Modals</h1>
+          <button @click="showLoadingModal" class="read-button button modal-button-width"> Show Loading Modal</button>
+          <button @click="showSuccessModal" class="accept-button button modal-button-width"> Show Success Modal</button>
+          <button @click="showFailureModal" class="deny-button button modal-button-width">Show Failure Modal</button>
 
-        <loading-modal :show="loadingModalVisible" @close="hideLoadingModal" />
-        <success-modal :show="successModalVisible" @close="hideSuccessModal" message="It Worked, Nice!" />
-        <failure-modal :show="failureModalVisible" @close="hideFailureModal" message="It didn't Work, Not Nice!" />
+          <button @click="showConfirmationModal" class="update-button button modal-button-width">Show Confirmation Modal</button>
 
-        <confirmation-modal :show="confirmationModalVisible" @confirm="confirmAction" @cancel="cancelAction">
-          <!-- Slot content for the confirmation modal -->
-          <p>Are you sure you want to confirm this action?</p>
-        </confirmation-modal>
-      </div>
+          <loading-modal :show="loadingModalVisible" @close="hideLoadingModal" />
+          <success-modal :show="successModalVisible" @close="hideSuccessModal" message="It Worked, Nice!" />
+          <failure-modal :show="failureModalVisible" @close="hideFailureModal" message="It didn't Work, Not Nice!" />
+
+          <confirmation-modal :show="confirmationModalVisible" @confirm="confirmAction" @cancel="cancelAction">
+            <!-- Slot content for the confirmation modal -->
+            <p>Are you sure you want to confirm this action?</p>
+          </confirmation-modal>
+
+        </div>
+      </form>
     </div>
   </div>
 </template>
