@@ -157,7 +157,7 @@ export default {
     fetchBooksList() {
       this.loadingModal.show = true;
       axios
-          .get("http://localhost:8080/api/admin/books/all")
+          .get("http://localhost:8080/api/admin/books/list/all")
           .then((response) => {
             this.books = response.data;
             this.loadingModal.show = false;

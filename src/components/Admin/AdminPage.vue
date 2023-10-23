@@ -34,7 +34,8 @@
           </li>
           <li>
             <router-link to="/admin/rentals">
-              <i class="far fa-calendar-alt"></i> span class="menu-text" v-show="isExpanded">Reservation Management</span> <!-- Updated text -->
+              <i class="far fa-calendar-alt">
+              </i> span class="menu-text" v-show="isExpanded">Reservation Management</span>
             </router-link>
           </li>
 
