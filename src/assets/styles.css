@@ -43,6 +43,42 @@
     align-items: center;
     justify-content: center;
 }
+.card-container {
+    display: flex;
+    justify-content: center;
+    background-color: #007bff; /* Background color (Purple) */
+    padding: 20px;
+    box-shadow: 0px 0px 5px 0px #000;
+
+}
+
+.form-container {
+    width: 650px;
+    background-color: #fff; /* FAQ container background color (White) */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #000;
+}
+
+.card-container-admin{
+    max-width: fit-content;
+    margin: 20px auto;
+    align-items: center;
+    box-shadow: 0px 0px 2px 0px #000;
+
+
+
+}
+
+.form-container-admin {
+    width: 650px;
+    background-color: #e4ddfa; /* FAQ container background color (White) */
+    /*
+    padding: 30px;
+    */
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 0px #000;
+}
 
 
 
@@ -193,6 +229,10 @@ nav a:active {
 
 /* Sidebar Styles */
 
+.sidebar{
+    box-shadow: 0px 0px 5px 0px #000;
+}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -221,11 +261,11 @@ nav a:active {
 }
 
 /*  ----------------------------------------     Forms Styles     -------------------------------------------------- */
-
+/*
 .form-container {
-   /* max-width: 400px;*/
+   !* max-width: 400px;*!
     margin: 0 auto;
-}
+}*/
 
 form {
     background-color: #007bff; /* Blue background color */
@@ -396,6 +436,55 @@ button:active {
 .form-button-container{
     display: flex;
     justify-content: space-between;
+}
+
+button {
+
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: white;
+    height: 40px;text-decoration: none;
+}
+
+.blue-icon {
+    color: #2196f3;
+
+}
+
+.confirm-button, .accept-button ,.add-button{
+    background-color: #4caf50;
+    height: 40px;
+
+}
+
+.deny-button, .cancel-button {
+    background-color: #e53935;
+    height: 40px;
+}
+
+.delete-button {
+    background-color: #e53935;
+    height: 40px;
+}
+
+.update-button {
+    background-color: #ff9800;
+    height: 40px;
+}
+
+.read-button {
+    background-color: #2196f3;
+    height: 40px;
+}
+
+.search-bar {
+    margin-bottom: 1rem;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    width: 300px;
+    margin-right: 1rem;
 }
 
 /*  ----------------------------------------     Tables Styles      -------------------------------------------------- */

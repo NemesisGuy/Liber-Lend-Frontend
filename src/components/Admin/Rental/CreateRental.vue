@@ -1,6 +1,6 @@
 <template>
-  <div class="form-container">
-    <div class="create-rental">
+  <div class="card-container card-container-admin">
+    <div class="form-container-admin">
       <LoadingModal :show="loadingModal.show" v-if="loadingModal.show"></LoadingModal>
 
       <form ref="rentalForm" @submit.prevent="createRental">

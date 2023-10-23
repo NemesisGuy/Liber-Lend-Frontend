@@ -1,6 +1,6 @@
 <template>
-  <div class="content-container">
-    <div class="card-container">
+  <div class="card-container card-container-admin">
+    <div class="form-container-admin">
       <h1>List of {{ category }} Books</h1>
       <table>
         <thead>

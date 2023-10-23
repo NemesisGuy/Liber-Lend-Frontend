@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container">
-    <div class="book-profile">
+  <div class="card-container card-container-admin">
+    <div class="form-container-admin">
       <h1>Book Profile</h1>
       <div class="profile-details" v-if="book">
         <div>

@@ -1,11 +1,14 @@
 <template>
-  <div class="content-container">
-    <div>
-      <h1>{{ book.title }}</h1>
-      <p>{{ book.description }}</p>
-      <p>Genre : {{ book.genre }}</p>
+  <div class="card-container card-container-admin">
+    <div class="form-container-admin">
+      <div>
+        <h1>{{ book.title }}</h1>
+        <p>{{ book.description }}</p>
+        <p>Genre : {{ book.genre }}</p>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
