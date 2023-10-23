@@ -51,7 +51,7 @@
             </button>
           </td>
           <td>
-            <button @click="deleteUserPrompt(user.id)" class="btn-small">Delete</button>
+            <button @click="deleteUser(user.id)" class="btn-small">Delete</button>
           </td>
         </tr>
         </tbody>
@@ -130,11 +130,6 @@ export default {
             console.log(error);
             console.log('User not updated');
           });
-    },
-    deleteUserPrompt(userId) {
-      if (window.confirm('Are you sure you want to delete this item?')) {
-        this.deleteUser(userId);
-      }
     },
   },
   computed: {

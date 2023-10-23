@@ -1,36 +1,31 @@
+<!--Filename : AdminSidebar.vue-->
 <template>
-  <div class="sidebar admin-sidebar">
+
+    <!-- Sidebar content goes here -->
+
+  <div class="sidebar-container">
     <ul>
       <li>
-        <router-link to="/admin/books">
-          Books
-          <ul class="submenu">
-            <li><router-link to="/api/books/all">List Books</router-link></li>
-            <li><router-link to="/admin/books/create">Add Book</router-link></li>
-            <li><router-link to="/admin/books/select">View Book</router-link></li>
-            <li><router-link to="/admin/books/update">Update Book</router-link></li>
-            <li><router-link to="/admin/books/delete">Delete Book</router-link></li>
-          </ul>
-        </router-link>
+        <router-link to="/admin/dashboard">Dashboard</router-link>
       </li>
       <li>
-        <router-link to="/admin/users">
-          Users
-          <ul class="submenu">
-            <li><router-link to="/admin/users/all">List Users</router-link></li>
-            <li><router-link to="/admin/users/create">Add User</router-link></li>
-            <li><router-link to="/admin/users/select">View User</router-link></li>
-            <li><router-link to="/admin/users/update">Update User</router-link></li>
-            <li><router-link to="/admin/users/delete">Delete User</router-link></li>
-          </ul>
-        </router-link>
+        <router-link to="/admin/cars">Car Management</router-link>
       </li>
-      <li><a @click="menuItem7">Item 7</a></li>
-      <li><a @click="menuItem8">Item 8</a></li>
-      <li><a @click="menuItem9">Item 9</a></li>
-      <li><a @click="menuItem10">Item 10</a></li>
+      <li>
+        <router-link to="/admin/users">User Management</router-link>
+      </li>
+      <li>
+        <router-link to="/admin/rentals">Rental Management</router-link>
+      </li>
+      <li>
+        <router-link to="/admin/test">Test</router-link>
+      </li>
+      <li>
+        <router-link to="/rental/return/1">Rental Return</router-link>
+      </li>
     </ul>
   </div>
+
 </template>
 
 <script>

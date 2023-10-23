@@ -1,9 +1,8 @@
 <template>
   <div class="card-container">
-    <div class="book-details">
-      <h1>Book Details</h1>
-      <div v-if="book" class="details-container">
-
+    <div class="book-profile">
+      <h1>Book Profile</h1>
+      <div class="profile-details" v-if="book">
         <div>
           <label>Title:</label>
           <span>{{ book.title }}</span>
@@ -13,63 +12,47 @@
           <span>{{ book.author }}</span>
         </div>
         <div>
-          <label>Publisher:</label>
-          <span>{{ book.publisher }}</span>
+          <label>Genre:</label>
+          <span>{{ book.genre }}</span>
         </div>
         <div>
           <label>ISBN:</label>
           <span>{{ book.ISBN }}</span>
         </div>
         <div>
-          <label>Image Link:</label>
-          <span>{{ book.imageLink }}</span>
-        </div>
-        <div>
-          <label>Description:</label>
-          <span>{{ book.description }}</span>
-        </div>
-        <div>
-          <label>Genre:</label>
-          <span>{{ book.genre }}</span>
-        </div>
-        <div>
-          <label>Language:</label>
-          <span>{{ book.language }}</span>
-        </div>
-        <div>
           <label>Edition:</label>
           <span>{{ book.edition }}</span>
         </div>
+        <!-- You can add more attributes here if needed -->
       </div>
       <div v-else>
-        <p>Loading book details...</p>
+        <p>Loading book profile...</p>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 
 export default {
-  name: 'BookDetails',
+  name: 'ViewBook',
   data() {
     return {
       book: null,
     };
   },
   mounted() {
-    this.fetchBookDetails();
+    this.fetchBookProfile();
   },
   methods: {
-    fetchBookDetails() {
-      // Assuming you have the book ID or any other identifier to fetch the book details
-     // const bookId = '123'; // Replace with the actual book ID
-      const bookId = this.$route.params.id;
-
+    fetchBookProfile() {
+      // Assuming you have the book ID or any other identifier to fetch the book's profile
+      const bookId = this.$route.params.id// Get the category from the route parameter
 
       axios
-          .get(`http://localhost:8080/api/books/read/${bookId}`)
+          .get(`http://localhost:8080/api/admin/books/read/${bookId}`)
           .then((response) => {
             this.book = response.data;
           })
@@ -82,5 +65,30 @@ export default {
 </script>
 
 <style scoped>
-/* Add custom styles for the component */
+.card-container {
+
+padding: 50px;
+  justify-content: center;
+}
+.book-profile {
+  margin-top: 20px;
+}
+
+.book-profile h1 {
+  margin-bottom: 10px;
+}
+
+.profile-details div {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+span {
+  margin-left: 10px;
+}
 </style>
+
+

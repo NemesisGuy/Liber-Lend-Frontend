@@ -1,23 +1,32 @@
 <template>
-  <div id="app">
+  <div class="app">
+    <navbar></navbar>
     <div class="app-container">
-      <div class="nav-container">
-        <navbar></navbar>
+      <div class="app-content">
+        <!-- Your content -->
+        <router-view></router-view>
       </div>
-      <router-view />
+
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+import Navbar from './components/Main/Navbar.vue';
+import Footer from "@/components/Main/Footer.vue";
 
 export default {
   name: 'App',
-  components: {Navbar},
+  components: {
+    Navbar,
+    Footer,
+  },
+  data() {
+    return {};
+  },
 };
 </script>
 
 <style>
-/* Add your global styles here */
+
 </style>

@@ -1,148 +1,94 @@
-//import Vue from 'vue';
-// noinspection JSValidateTypes
-
-//import VueRouter from '../router';
-import {createRouter, createWebHistory} from 'vue-router';
-
-//import VueRouter from 'vue-router';
-import Login from '../components/Login.vue';
-import Signup from '../components/Signup.vue';
-import Home from "@/components/Home.vue";
-import LandingPage from "@/components/LandingPage.vue";
-import UpdateUser from "@/components/Admin/User/UpdateUser.vue";
-import UserList from "@/components/Admin/User/UserList.vue";
-import SelectUser from "@/components/Admin/User/SelectUser.vue";
-import DeleteUser from "@/components/Admin/User/DeleteUser.vue";
-import ViewUser from "@/components/Admin/User/ViewUser.vue";
-import CreateUser from "@/components/Admin/User/CreateUser.vue";
-import ErrorPage from "@/components/ErrorPage.vue";
+import { createRouter, createWebHistory } from 'vue-router';
 import AdminPage from "@/components/Admin/AdminPage.vue";
-import DeleteBook from "@/components/Admin/Book/DeleteBook.vue";
-import CreateBook from "@/components/Admin/Book/CreateBook.vue";
-import UpdateBook from "@/components/Admin/Book/UpdateBook.vue";
-import SelectBook from "@/components/Admin/Book/SelectBook.vue";
-import ViewBook from "@/components/Admin/Book/ViewBook.vue";
-import BookList from "@/components/Admin/Book/BookList.vue";
-import Books from "@/components/Admin/Book/Books.vue";
-import Users from "@/components/Admin/User/Users.vue";
-import EditBook from "@/components/Admin/Book/EditBook.vue";
-
-// noinspection JSCheckFunctionSignatures
-
+import ConfirmationModal from "@/components/Main/Modals/ConfirmationModal.vue";
+import adminRoutes from './adminRoutes';
+import adminBookRoutes from './adminBookRoutes';
+import adminUserRoutes from './adminUserRoutes';
+import navRoutes from './navRoutes';
+import BookList from "@/components/Main/Book/BookList.vue";
+import Home from "@/components/Main/Home.vue";
+import bookRoutes from './bookRoutes';
+import UserProfile from "@/components/Main/UserProfile.vue";
+import Test from "@/components/Main/TestPage.vue";
+import TestPage from "@/components/Main/TestPage.vue";
+import adminRentalRoutes from "@/router/adminRentalRoutes";
+import Rental from "@/components/Main/Rental/Rental.vue";
+import ReturnRental from "@/components/Main/Rental/ReturnRental.vue";
+import CreateRental from "@/components/Admin/Rental/CreateRental.vue";
+import Login from "@/components/Main/Login.vue";
+import Signup from "@/components/Main/Signup.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/home', component: Home},
-        {path: '/login', component: Login},
-        {path: '/signup', component: Signup},
-        {path: '/', component: LandingPage},
+        ...navRoutes,
+       ...bookRoutes,
         {
-            path: '/admin',
-            name: 'AdminPage',
-            component: AdminPage,
+            path: '/',
+            name: 'Home',
+            component: Home,
         },
         {
-            path: '/admin/users/create',
-            name: 'CreateUser',
-            component: CreateUser,
+            path: '/rental/:bookId',
+            name: 'Rental',
+            component: Rental,
         },
         {
-            path: '/admin/users/read/:userId',
-            name: 'ViewUser',
-            component: ViewUser,
+            path: '/rental/return/:rentalId',
+            name: 'ReturnRental',
+            component: ReturnRental,
         },
+      /*  {
+            path: '/rental/create/',
+            name: 'CreateRental',
+            component: CreateRental,
+        },*/
+
+
         {
-            path: '/admin/users/select',
-            name: 'SelectUser',
-            component: SelectUser,
-        },
-        {
-            path: '/admin/users/:category',
-            name: 'UserList',
-            component: UserList,
-        },
-        {
-            path: '/admin/users/update',
-            name: 'UpdateUser',
-            component: UpdateUser,
-        },
-        {
-            path: '/admin/users/delete',
-            name: 'DeleteUser',
-            component: DeleteUser,
-        },
-        {
-            path: '/admin/books/delete',
-            name: 'DeleteBook',
-            component: DeleteBook,
-        },
-        {
-            path: '/admin/books/create',
-            name: 'CreateBook',
-            component: CreateBook,
-        },
-        {
-            path: '/admin/books/update',
-            name: 'UpdateBook',
-            component: UpdateBook,
-        },
-        {
-            path: '/admin/books/select',
-            name: 'SelectBook',
-            component: SelectBook,
-        },
-        {
-            path: '/admin/books/read/:id',
-            name: 'ViewBook',
-            component: ViewBook,
-        },
-        {
-            path: '/api/books/:category',
+            path: '/books/list/:category/:available',
             name: 'BookList',
             component: BookList,
         },
+
+    /*    {
+            path: '/register',
+            name: 'Register',
+            component: Signup,
+        },
         {
-            path: '/admin/books',
-            component: Books,
+            path: '/login',
+            name: 'Login',
+            component: Login,
+        },*/
+
+        {
+            path: '/user/profile/:id',
+            name: 'UserProfile',
+            component: UserProfile,
+        },
+        {
+            path: '/admin',
+            component: AdminPage,
             children: [
-                { path: 'list', component: BookList },
-                { path: 'create', component: CreateBook},
-                { path: 'select', component: ViewBook },
-                { path: 'update', component: UpdateBook },
-                { path: 'delete', component: DeleteBook },
+                ...adminRoutes,
+                ...adminBookRoutes,
+                ...adminUserRoutes,
+                ...adminRentalRoutes,
             ],
         },
-        {
-            path: '/admin/users',
-            component: Users,
-            children: [
-                { path: 'list', component: UserList },
-                { path: 'create', component: CreateUser },
-                { path: 'select', component: ViewUser },
-                { path: 'update', component: UpdateUser },
-                { path: 'delete', component: DeleteUser },
-            ],
-        },
-        {
-            path: "/admin/books/edit/:id",
-            component: EditBook,
-            name: "EditBook"
-        },
+
 
         {
             path: '/error',
-
-            component: ErrorPage,
+            component: () => import('@/components/Main/ErrorPage.vue'),
         },
         {
             path: '/:pathMatch(.*)*',
             name: 'ErrorPage',
-            component: ErrorPage,
-        }
-
-    ]
+            component: () => import('@/components/Main/ErrorPage.vue'),
+        },
+    ],
 });
-
 
 export default router;

@@ -1,70 +1,117 @@
-/* Apply a basic CSS reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --admin-page-width: 800px; /* Change this to the desired width of admin-page */
+    --sidebar-container-width: 200px; /* Change this to the width of sidebar-container */
+}
+.app {
+    height: 100vh; /* Set the app height to fill the viewport */
 }
 
-/* Set a global font family */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #0D47A1;
+.app-container {
+    background-color: #536d88; /* Very grayish-blue background color */
     color: floralwhite;
+    align-items: center;
+    display: flex; /* Display children in a flex layout */
+    flex-direction: column; /* Stack children vertically */
+    height: 100%; /* Set the container height to take up remaining space */
 }
-
-/* Container for the entire app */
-#app {
+.content-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    background-color: #536d88; /* Very grayish-blue background color */
+    color: floralwhite;
+    height: inherit;
+    padding: 20px;
 }
 
-/* Card styles */
+.app-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .card-container {
+    background-color: #007bff;
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px #000;
-
-}
-
-/* Container for the app content */
-.app-container {
-    flex-grow: 1;
+    text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    text-align: left;
-    margin-top: 60px; /* Add this line to create space below the navigation bar */
+}
+
+
+
+.footer {
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+}
+
+.does-Nothing-But-Store-Styles {
+    background-color: #536d88; /* Very grayish-blue background color */
+    background-color: #007bff; /* Blue background Nav color */
+    background-color: #0056b3; /* Darker blue Sidebar */
+    background-color: #314254; /* Darker blue on hover */
+    background-color: #6ab4f8; /* Light blue background color */
+}
+
+body {
+    background-color: #536d88; /* Very grayish-blue background color */
+    color: floralwhite;
 
 }
-.card {
-    background-color: #0D47A1;
+
+/*change the color on the disabled inputs*/
+input:disabled {
+    background-color: #6610f2;
+    color: floralwhite;
+    /*can we make the inputs look disabled*/
+    opacity: 0.7;
+}
+
+/*
+fill page with app-container
+*/
+html, body, #app {
+    height: 100%;
+    padding: 0;
+}
+
+.button-container {
     color: floralwhite;
     padding: 20px;
     margin: 20px;
-    border-radius: 5px;
+}
+
+.box-shadow {
     box-shadow: 0px 0px 5px 0px #000;
-    text-align: left;
 }
 
-.card li{
-    list-style-type: none;
-    padding: 20px;
-
-}
-
-/* Navigation styles */
-nav {
-    background-color: #333333;
+/*  ---------------------------------------      Nav Styles      -------------------------------------------------- */
+nav, .nav {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #007bff; /* Blue background color */
     color: floralwhite;
     box-shadow: 0px 0px 5px 0px #000;
+    width: 100%;
+    /*nothing can over lap this nav */
+    z-index: 2;
+
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    z-index: 9999;
+    z-index: 2;
+    margin-bottom: auto;
 }
 
 nav ul {
@@ -72,8 +119,7 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
 }
 
 nav li {
@@ -88,25 +134,64 @@ nav a {
     text-decoration: none;
 }
 
-nav a:hover,
-nav a.active {
-    background-color: #0D47A1;
+nav a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
     color: floralwhite;
+
 }
 
-/* Sidebar styles */
+nav a.active {
+    background-color: #10f2f2;
+    color: floralwhite;
+
+}
+
+nav a:active {
+    background-color: #10f2f2;
+    color: floralwhite;
+
+}
+
+.chart {
+    flex: 1;
+    width: 100%;
+    min-width: 300px;
+    height: 100%;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 2px;
+    margin: 20px;
+}
+
+.line-chart {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 20px;
+}
+
+/*  ----------------------------------------     Sidebar Styles     -------------------------------------------------- */
+/*
 .sidebar {
     width: 200px;
-    background-color: #0D47A1;
-    position: fixed;
-    left: 0;
-    top: 55px;
-    bottom: 0;
+    background-color: #6610f2;
     color: floralwhite;
+    padding: 20px;
     box-shadow: 0px 0px 5px 0px #000;
     border-radius: 2px;
-    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    !* stick to left of screen *!
+
+
 }
+*/
+
+
+/* Sidebar Styles */
 
 .sidebar ul {
     list-style-type: none;
@@ -124,27 +209,31 @@ nav a.active {
 }
 
 .sidebar a:hover {
-    background-color: #333333;
+    /*  background-color:  #0056b3; !* Darker blue on hover *!*/
+    background-color: #314254; /* Darker blue on hover */
     color: black;
 }
 
 .main-content {
-    margin-left: 200px;
+    flex-grow: 1;
     padding: 20px;
+    width: 100%;
 }
 
-/* Forms styles */
+/*  ----------------------------------------     Forms Styles     -------------------------------------------------- */
+
 .form-container {
-    max-width: 400px;
+   /* max-width: 400px;*/
     margin: 0 auto;
 }
 
 form {
-    background-color: #0D47A1;
+    background-color: #007bff; /* Blue background color */
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px #000;
+    width: 600px;
 }
 
 .form-header {
@@ -174,43 +263,174 @@ input[type="email"] {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus {
-    box-shadow: #333333 0px 0px 5px 0px;
+
+    box-shadow: #f2105e 0px 0px 5px 0px;
 }
 
-.button-container {
+.add-car-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.add-user-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-small {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+button[type="submit"] {
     color: floralwhite;
-    padding: 20px;
-    margin: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.box-shadow {
-    box-shadow: 0px 0px 5px 0px #000;
+button {
+    background-color: #f2105e;
+    color: floralwhite;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: black 0px 0px 5px 0px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6610f2;
+    /*   box-shadow: inset #f2105e 0px 0px 10px 0px;  */
+    box-shadow: black 0px 0px 5px 0px;
+
+}
+
+button:active {
+    background-color: #10f2f2;
+    box-shadow: black 0px 0px 5px 0px;
+
+}
+
+.custom-button {
+    background-color: #f2105e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: black 0px 0px 5px 0px;
+    color: floralwhite;
+
+}
+
+.custom-button:hover {
+    background-color: #6610f2;
+    color: floralwhite;
+    box-shadow: black 0px 0px 10px 0px;
+    text-decoration: none;
+}
+
+.custom-button:active {
+    background-color: #10f2f2;
+    color: floralwhite;
+    box-shadow: black 0px 0px 10px 0px;
+    text-decoration: none;
+}
+.form-button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*  ----------------------------------------     Tables Styles      -------------------------------------------------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 /* -----------------------------------              Menus            ------------------------------------*/
-admin-sidebar {
-    width: 200px;
-    background-color: #0D47A1;
-    position: fixed; /* Add this line */
-    left: 0; /* Add this line */
-    top: 55px; /* Add this line */
-    bottom: 0; /* Add this line */
-    color: floralwhite;
-    box-shadow: 0px 0px 5px 0px #000;
-    border-radius: 10px;
 
-}
+
 .sidebar ul {
     list-style-type: none;
     padding: 10px;
     border-radius: 2px;
 
 }
+
 .sidebar li {
     padding: 10px;
     border-radius: 2px;
 
 }
+
 .sidebar a {
     display: block;
     color: floralwhite;
@@ -218,7 +438,10 @@ admin-sidebar {
     border-radius: 2px;
 
 }
-.sidebar a:hover {background-color: #0D47A1 ;
+
+.sidebar a:hover {
+    /*background-color: #f2105e;*/
+    background-color: #314254; /* Darker blue on hover */
 
     color: floralwhite;
     border-radius: 2px;
@@ -229,17 +452,18 @@ admin-sidebar {
 
 .submenu {
     display: none;
-    border-radius: 4px ;
+    border-radius: 4px;
 
 
 }
 
 .sidebar li:hover .submenu {
     display: block;
-    border-radius: 4px ;
+    border-radius: 4px;
 
 
 }
+
 .sidebar li:hover .submenu a {
 
 }
@@ -260,15 +484,347 @@ label {
 span {
     margin-left: 10px;
 }
-.user-selection-container {
-    display: flex;
-    justify-content: space-between;
+
+/* -----------------------------------  Styling the Admin Users Management Page  ------------------------------------*/
+
+.add-user-link {
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+th {
+    padding: 0.5rem;
+    text-align: left;
+}
+
+td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: white;
+}
+
+.blue-icon {
+    color: #2196f3;
+}
+
+.confirm-button, .accept-button {
+    background-color: #4caf50;
+    cursor: pointer;
+    min-width: 110px;
+}
+
+.deny-button, .cancel-button {
+    background-color: #e53935;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #e53935;
+    cursor: pointer;
+}
+
+.update-button {
+    background-color: #ff9800;
+    cursor: pointer;
+    min-width: 110px;
+}
+
+.read-button {
+    background-color: #2196f3;
+    cursor: pointer;
+}
+
+     /* Style for the Signup button */
+
+
+/* Style for the Login button */
+
+
+/* Hover effect for both buttons */
+.read-button:hover, .update-button:hover,.delete-button:hover, .confirm-button:hover, .accept-button:hover, .deny-button:hover, .cancel-button:hover {
+    opacity: 0.8; /* Reduce opacity on hover for a visual effect */
+    cursor: pointer;
 }
 
 
+.search-bar {
+    margin-bottom: 1rem;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    width: 300px;
+    margin-right: 1rem;
+}
+
+.add-user-button {
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 0px #000;
+
+}
+
+.search-bar-container button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: white;
+    background-color: #2196f3;
+}
+
+.search-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+
+.search-input {
+    padding: 8px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.content-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.reset-search-button:hover {
+    background-color: #6610f2;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+}
+
+.search-input input {
+    margin-right: 10px;
+}
+
+.search-input button {
+    margin-left: 10px;
+}
+
+.add-button:hover {
+    background-color: #6610f2;
+}
+
+.add-button {
+    min-width: 100px;
+}
+
+.delete-button {
+    min-width: 100px;
+}
+
+.update-button {
+    min-width: 100px;
+}
+
+.read-button {
+    min-width: 100px;
+}
+
+.actions-column {
+    min-width: 370px;
+    align-items: center;
+}
+
+.description-column, .description-column-data {
+    width: 40%;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
+}
 
 
-/* Media Queries for Responsive Layout */
+.loading {
+    /* margin-top: 1rem;*/
+}
+
+/* -----------------------------------  Styling the Admin Management Pages Buttons  ------------------------------------*/
+.add-button {
+    /*margin-bottom: 1rem;*/
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 0px #000;
+    min-width: 160px;
+
+}
+
+.car-button {
+    /*add car icon*/
+}
+
+.user-button {
+    /*add user icon*/
+}
+
+.rental-button {
+    /*add rental icon*/
+}
+
+.reset-search-button {
+    width: 120px;
+
+}
+
+.search-input {
+    min-width: 420px
+}
+
+
+/* -----------------------------------  Styling the Modals  ------------------------------------*/
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    max-height: 95%;
+    max-width: 95%;
+    overflow-y: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+}
+
+.loading-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3; /* Light gray */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+
+.create-rental {
+    margin-top: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="datetime-local"],
+input[type="text"],
+select {
+    width: 100%; /* Updated: Set width to 100% */
+}
+
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* -----------------------------------  Media Queries for Responsive Layout  ------------------------------------*/
 @media (max-width: 768px) {
     .form-container {
         max-width: 100%;

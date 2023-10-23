@@ -1,11 +1,7 @@
 <template>
-  <div class="content-container">
-    <div class="card-container">
-
-
-  <div v-if="user">
+  <div class="user-profile">
     <h1>User Profile</h1>
-    <div class="profile-details">
+    <div v-if="user" class="profile-details">
       <div>
         <label>Username:</label>
         <span>{{ user.userName }}</span>
@@ -31,32 +27,36 @@
         <span>{{ user.role }}</span>
       </div>
     </div>
+    <div v-else>
+      <loading-modal v-if="loading" />
+      Loading user profile...
+    </div>
   </div>
-  <div v-else>
-    User not found.
-  </div>
-  </div>
-  </div>
-
 </template>
 
 
 <script>
 import axios from 'axios';
+import LoadingModal from '@/components/Main/Modals/LoadingModal.vue';
+
 
 export default {
-  name: 'ViewUser',
+  name: 'UserProfile',
   data() {
     return {
       user: null,
+      loading: false,
     };
   },
   mounted() {
     this.fetchUserProfile();
   },
   methods: {
+
     fetchUserProfile() {
-      const userId = this.$route.params.userId; // Check if the route parameter is correct
+      this.loading = true;
+      // Assuming you have the user ID or any other identifier to fetch the user's profile
+      const userId = this.$route.params.id; // Get the user ID from the route parameter
 
       axios
           .get(`http://localhost:8080/api/admin/users/read/${userId}`)
@@ -68,9 +68,12 @@ export default {
           });
     },
   },
+  components: {
+    LoadingModal,
+  },
 };
 </script>
 
 <style scoped>
-/* Add your component's styles here */
+
 </style>

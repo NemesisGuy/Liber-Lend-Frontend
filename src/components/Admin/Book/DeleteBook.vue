@@ -1,15 +1,16 @@
 <template>
   <div class="content-container">
     <div class="card-container">
-      <h1>List of Books</h1>
+      <h1>List of {{ category }} Books</h1>
       <table>
         <thead>
         <tr>
           <th @click="sortBooks('id')">ID</th>
           <th @click="sortBooks('title')">Title</th>
           <th @click="sortBooks('author')">Author</th>
-          <th @click="sortBooks('publisher')">Publisher</th>
+          <th @click="sortBooks('genre')">Genre</th>
           <th @click="sortBooks('ISBN')">ISBN</th>
+          <th @click="sortBooks('edition')">Edition</th>
           <th>Delete</th>
         </tr>
         </thead>
@@ -18,10 +19,10 @@
           <td>{{ book.id }}</td>
           <td>{{ book.title }}</td>
           <td>{{ book.author }}</td>
-          <td>{{ book.publisher }}</td>
+          <td>{{ book.genre }}</td>
           <td>{{ book.ISBN }}</td>
-          <td><button @click="deleteBookPrompt(book.id)" class="btn-small">Delete</button></td>
-
+          <td>{{ book.edition }}</td>
+          <td><button @click="deleteBook(book.id)">Delete</button></td>
         </tr>
         </tbody>
       </table>
@@ -37,6 +38,7 @@ export default {
   data() {
     return {
       books: [],
+      category: '',
       sortColumn: '', // Current column to sort by
       sortDirection: '', // Current sort direction
     };
@@ -46,10 +48,12 @@ export default {
   },
   methods: {
     fetchBooks() {
+      const category = 'all';
       axios
-          .get('http://localhost:8080/api/books/all')
+          .get(`http://localhost:8080/api/books/${genre}`)
           .then((response) => {
             this.books = response.data;
+            this.category = category;
           })
           .catch((error) => {
             console.log(error);
@@ -65,7 +69,7 @@ export default {
     },
     deleteBook(bookId) {
       axios
-          .delete(`http://localhost:8080/api/books/delete/${bookId}`)
+          .delete(`http://localhost:8080/api/admin/books/delete/${bookId}`)
           .then((response) => {
             this.fetchBooks();
             console.log(response);
@@ -76,11 +80,6 @@ export default {
             console.log('Book not deleted');
           });
     },
-    deleteBookPrompt(bookId) {
-      if (window.confirm('Are you sure you want to delete this item?')) {
-        this.deleteBook(bookId);
-      }
-    },
   },
   computed: {
     sortedBooks() {
@@ -90,7 +89,9 @@ export default {
           const bValue = b[this.sortColumn];
 
           if (typeof aValue === 'string' && typeof bValue === 'string') {
-            return this.sortDirection === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+            return this.sortDirection === 'asc'
+                ? aValue.localeCompare(bValue)
+                : bValue.localeCompare(aValue);
           } else {
             return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
           }

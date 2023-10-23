@@ -1,17 +1,16 @@
 <template>
   <div class="content-container">
     <div class="card-container">
-      <h1>List of {{ category }} Books</h1>
+      <h1>Update Books</h1>
+      <h2>List of {{ genre }} Books</h2>
       <table>
         <thead>
         <tr>
           <th @click="sortBooks('id')">ID</th>
           <th @click="sortBooks('title')">Title</th>
           <th @click="sortBooks('author')">Author</th>
-          <th @click="sortBooks('publisher')">Publisher</th>
-          <th @click="sortBooks('ISBN')">ISBN</th>
           <th @click="sortBooks('genre')">Genre</th>
-          <th @click="sortBooks('language')">Language</th>
+          <th @click="sortBooks('ISBN')">ISBN</th>
           <th @click="sortBooks('edition')">Edition</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -27,27 +26,21 @@
             <input v-model="book.author" :disabled="!book.editMode" />
           </td>
           <td>
-            <input v-model="book.publisher" :disabled="!book.editMode" />
+            <input v-model="book.genre" :disabled="!book.editMode" />
           </td>
           <td>
             <input v-model="book.ISBN" :disabled="!book.editMode" />
           </td>
           <td>
-            <input v-model="book.genre" :disabled="!book.editMode" />
+            <input v-model="book.edition" :disabled="!book.editMode" />
           </td>
           <td>
-            <input v-model="book.language" :disabled="!book.editMode" />
-          </td>
-          <td>
-            <input v-model="book.edition" :disabled="!book.editMode" type="number" />
-          </td>
-          <td>
-            <button @click="toggleEditMode(book)" class="btn-small">
+            <button @click="toggleEditMode(book)">
               {{ book.editMode ? 'Save' : 'Edit' }}
             </button>
           </td>
           <td>
-            <button @click="deleteBookPrompt(book.id)" class="btn-small">Delete</button>
+            <button @click="deleteBook(book.id)">Delete</button>
           </td>
         </tr>
         </tbody>
@@ -60,13 +53,13 @@
 import axios from 'axios';
 
 export default {
-  name: 'BookUpdate',
+  name: 'EditBook',
   data() {
     return {
       books: [],
       category: '',
-      sortColumn: '',
-      sortDirection: '',
+      sortColumn: '', // Current column to sort by
+      sortDirection: '', // Current sort direction
     };
   },
   mounted() {
@@ -98,7 +91,7 @@ export default {
     },
     deleteBook(bookId) {
       axios
-          .delete(`http://localhost:8080/api/books/delete/${bookId}`)
+          .delete(`http://localhost:8080/api/admin/books/delete/${bookId}`)
           .then((response) => {
             this.fetchBooks();
             console.log(response);
@@ -117,7 +110,7 @@ export default {
     },
     updateBook(book) {
       axios
-          .put(`http://localhost:8080/api/books/update/${book.id}`, book)
+          .put(`http://localhost:8080/api/admin/books/update/${book.id}`, book)
           .then((response) => {
             console.log(response);
             console.log('Book updated');
@@ -126,11 +119,6 @@ export default {
             console.log(error);
             console.log('Book not updated');
           });
-    },
-    deleteBookPrompt(bookId) {
-      if (window.confirm('Are you sure you want to delete this item?')) {
-        this.deleteBook(bookId);
-      }
     },
   },
   computed: {
@@ -162,7 +150,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 /* Add custom styles for the component */

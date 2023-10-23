@@ -5,7 +5,7 @@
       <input type="text" v-model="searchQuery" placeholder="Search Book" />
       <ul>
         <li v-for="book in filteredBooks" :key="book.id" @click="selectBook(book.id)" :class="{ active: selectedBookId === book.id }">
-          {{ book.title }}
+          {{ book.title }} ({{ book.author }})
         </li>
       </ul>
     </div>
@@ -22,28 +22,12 @@
           <span>{{ selectedBook.author }}</span>
         </div>
         <div>
-          <label>Publisher:</label>
-          <span>{{ selectedBook.publisher }}</span>
-        </div>
-        <div>
-          <label>ISBN:</label>
-          <span>{{ selectedBook.ISBN }}</span>
-        </div>
-        <div>
-          <label>Image Link:</label>
-          <span>{{ selectedBook.imageLink }}</span>
-        </div>
-        <div>
-          <label>Description:</label>
-          <span>{{ selectedBook.description }}</span>
-        </div>
-        <div>
           <label>Genre:</label>
           <span>{{ selectedBook.genre }}</span>
         </div>
         <div>
-          <label>Language:</label>
-          <span>{{ selectedBook.language }}</span>
+          <label>ISBN:</label>
+          <span>{{ selectedBook.ISBN }}</span>
         </div>
         <div>
           <label>Edition:</label>
@@ -56,6 +40,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -76,7 +61,7 @@ export default {
   methods: {
     fetchBooks() {
       axios
-          .get('http://localhost:8080/api/books/all')
+          .get('http://localhost:8080/api/admin/books/all')
           .then((response) => {
             this.books = response.data;
           })
@@ -93,7 +78,10 @@ export default {
     filteredBooks() {
       if (this.searchQuery) {
         const query = this.searchQuery.toLowerCase();
-        return this.books.filter((book) => book.title.toLowerCase().includes(query));
+        return this.books.filter((book) => {
+          const makeModel = `${book.make} ${book.model}`.toLowerCase();
+          return makeModel.includes(query);
+        });
       }
       return this.books;
     },
@@ -102,5 +90,62 @@ export default {
 </script>
 
 <style scoped>
-/* Add custom styles for the component */
+.book-selection-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 2px;
+  background-color: #6610f2;
+  width: 45%;
+  box-shadow: black 0px 0px 5px 0px;
+}
+
+.book-list-card {
+  margin: 20px;
+}
+
+.book-list-bookd h2 {
+  margin-bottom: 10px;
+}
+
+.book-list-card input[type="text"] {
+  margin-bottom: 10px;
+}
+
+.book-list-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-list-card li {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.book-list-card li:hover,
+.book-list-card li.active {
+  background-color: #6610f2;
+}
+
+.book-details-card {
+  margin: 20px;
+  background-color: #6610f2;
+}
+
+.book-details-card h2 {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+span {
+  margin-left: 10px;
+}
 </style>
