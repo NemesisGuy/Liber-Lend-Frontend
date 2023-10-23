@@ -1,5 +1,4 @@
 <template>
-  <LoadingModal :show="LoadingModal.show" v-if="LoadingModal.show"></LoadingModal>
   <div class="form-container centered-container">
 
     <div class="add-book-form form">
@@ -31,52 +30,20 @@
       </form>
     </div>
   </div>
-  <SuccessModal
-      key="SuccessModal"
-      v-if="SuccessModal.show"
-      @close="closeModal"
-      @cancel="closeModal"
-      @confirm="closeModal"
-      @ok="closeModal"
-      :show="SuccessModal.show"
-      :message="SuccessModal.message"
-  ></SuccessModal>
-  <!-- Add the FailureModal component -->
-  <FailureModal
-      key="failModal"
-      v-if="FailureModal.show"
-      @close="closeModal"
-      @cancel="closeModal"
-      :show="FailureModal.show"
-      :message="FailureModal.message"
-  ></FailureModal>
-
 
 </template>
 
 
 <script>
 import axios from "axios";
-import FailureModal from "@/components/Main/Modals/FailureModal.vue";
-import SuccessModal from "@/components/Main/Modals/SuccessModal.vue";
-import LoadingModal from "@/components/Main/Modals/LoadingModal.vue";
+// import FailureModal from "@/components/Main/Modals/FailureModal.vue";
+// import SuccessModal from "@/components/Main/Modals/SuccessModal.vue";
+// import LoadingModal from "@/components/Main/Modals/LoadingModal.vue";
 
 
 
 
 export default {
-  computed: {
-    FailureModal() {
-      return FailureModal
-    },
-    LoadingModal() {
-      return LoadingModal
-    },
-    SuccessModal() {
-      return SuccessModal
-    }
-  },
-  components: {LoadingModal, FailureModal, SuccessModal},
   data() {
     return {
       book: {
@@ -96,16 +63,12 @@ export default {
           .then(response => {
             // Handle success
 
-            this.SuccessModal.message = 'Book added successfully.';
-            this.SuccessModal.show = true;
             console.log('Book added successfully');
             console.log(response.data);
             console.log(response);
           })
           .catch(error => {
             // Handle error
-            this.FailureModal.message = 'An error occurred while adding the book.';
-            this.FailureModal.show = true;
             console.log(error);
             if (error.response && error.response.status === 400) {
               // Display an error message to the user
@@ -134,10 +97,6 @@ export default {
         ISBN: '',
         edition: 1
       };
-    }, closeModal() {
-      this.SuccessModal.show = false;
-      this.failModal.show = false;
-      this.showConfirmationModal = false;
     },
   }
 };
