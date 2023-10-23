@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="book-selection-container">
+    <div class="card book-list-card">
       <h2>Book List</h2>
       <input type="text" v-model="searchQuery" placeholder="Search Book" />
       <ul>

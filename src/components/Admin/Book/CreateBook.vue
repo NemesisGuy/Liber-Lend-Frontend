@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="form-container centered-container">
+    <div class="add-book-form form">
       <form @submit.prevent="addBook">
         <h2 class="form-header">Add Book</h2>
         <div class="form-group">
@@ -98,5 +98,10 @@ export default {
 .error-message {
   color: red;
   margin-top: 5px;
+}
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

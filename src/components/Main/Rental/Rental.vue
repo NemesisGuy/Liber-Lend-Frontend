@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="container">
+    <div class="content-container">
       <div class="rental-container">
         <h1>Rent Book</h1>
         <div v-if="selectedBook" class="book-details">

@@ -6,7 +6,7 @@ import Home from "@/components/Main/Home.vue";
 import ErrorPage from '@/components/Main/ErrorPage.vue';
 import Signup from "@/components/Main/Signup.vue";
 import Login from "@/components/Main/Login.vue";
-import AdminPage from "@/components/Admin/AdminPage.vue";
+import AdminPage from "@/components/Admin/AdminPage2.vue";
 import CreateCar from "@/components/Admin/Book/CreateBook.vue";
 import DeleteCar from "@/components/Admin/Book/DeleteBook.vue";
 import UpdateCar from "@/components/Admin/Book/UpdateBook.vue";

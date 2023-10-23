@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AdminPage from "@/components/Admin/AdminPage.vue";
+import AdminPage from "@/components/Admin/AdminPage2.vue";
 import ConfirmationModal from "@/components/Main/Modals/ConfirmationModal.vue";
 import adminRoutes from './adminRoutes';
 import adminBookRoutes from './adminBookRoutes';
@@ -46,7 +46,7 @@ const router = createRouter({
 
 
         {
-            path: '/books/list/:category/:available',
+            path: '/books/list/:genre/:available',
             name: 'BookList',
             component: BookList,
         },

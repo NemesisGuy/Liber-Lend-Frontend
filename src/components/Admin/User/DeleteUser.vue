@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="content-container">
+    <div class="card-container">
       <h1>List of Users</h1>
       <table>
         <thead>

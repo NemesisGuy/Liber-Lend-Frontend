@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="form-container ">
+    <div class="create-rental centered-container">
       <LoadingModal :show="loadingModal.show" v-if="loadingModal.show"></LoadingModal>
 
       <form ref="rentalForm" @submit.prevent="createRental">
@@ -328,5 +328,9 @@ export default {
 </script>
 
 <style>
-
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

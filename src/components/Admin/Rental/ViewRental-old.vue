@@ -210,20 +210,6 @@ span {
   text-align: center;
 }
 
-table {
-  width: 100%;
-}
-
-table th,
-table td {
-  padding: 5px;
-  text-align: left;
-}
-
-table th {
-  width: 30%;
-}
-
 /* Media query for narrow screens */
 @media (max-width: 500px) {
   .profile-details {

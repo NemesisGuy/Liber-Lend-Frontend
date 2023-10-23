@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="content-container">
+    <div class="card-container">
       <h1>Update Books</h1>
       <h2>List of {{ genre }} Books</h2>
       <table>

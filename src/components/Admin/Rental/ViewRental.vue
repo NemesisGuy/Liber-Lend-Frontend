@@ -1,96 +1,90 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
-      <form>
+  <div class="card-container">
 
-      <div v-if="loading" class="loading">Loading...</div>
-      <loading-modal v-if="loading" show></loading-modal>
-      <div class="rental-profile">
-        <div class="profile-header">
-          <h1><i class="fas fa-book-reader"></i> Book Rental Profile</h1>
+    <div v-if="loading" class="loading">Loading...</div>
+    <loading-modal v-if="loading" show></loading-modal>
+    <div class="rental-profile">
+      <div class="profile-header">
+        <h1><i class="fas fa-book-reader"></i> Book Rental Profile</h1>
 
-          <hr>
-        </div>
-        <div class="profile-details" v-if="rental && user && book">
-          <!-- Rental Details Table -->
-          <h3 class="table-heading"><i class="fas fa-file-contract"></i> Rental Details:</h3>
+        <hr>
+      </div>
+      <div class="profile-details" v-if="rental && user && book">
+        <!-- Rental Details Table -->
+        <h3 class="table-heading"><i class="fas fa-file-contract"></i> Rental Details:</h3>
 
-          <table>
-            <tr><th>Label : </th> <th>Details : </th>  </tr>
-            <tr>
-              <td>Rental ID:</td>
-              <td>{{ rental.id }}</td>
-            </tr>
-            <tr>
-              <td>Rental Date:</td>
-              <td>{{ rental.issuedDate }}</td>
-            </tr>
-            <tr>
-              <td>Return Date:</td>
-              <td>{{ rental.returnedDate }}</td>
-            </tr>
-            <tr>
-              <td>Fine:</td>
-              <td>{{ rental.fine }}</td>
-            </tr>
-          </table>
+        <table>
+          <tr><th>Label : </th> <th>Details : </th>  </tr>
+          <tr>
+            <td>Rental ID:</td>
+            <td>{{ rental.id }}</td>
+          </tr>
+          <tr>
+            <td>Rental Date:</td>
+            <td>{{ rental.issuedDate }}</td>
+          </tr>
+          <tr>
+            <td>Return Date:</td>
+            <td>{{ rental.returnedDate }}</td>
+          </tr>
+          <tr>
+            <td>Fine:</td>
+            <td>{{ rental.fine }}</td>
+          </tr>
+        </table>
 
-          <hr>
+        <hr>
 
-          <!-- Customer Details Table -->
-          <h3 class="table-heading"><i class="fas fa-users"></i> Customer Details:</h3>
-          <table>
-            <tr><th>Label : </th> <th>Details : </th>  </tr>
-            <tr>
-              <td>Customer Name:</td>
-              <td>{{ user.userName }}</td>
-            </tr>
-            <tr>
-              <td>Customer First Name:</td>
-              <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-              <td>Customer Last Name:</td>
-              <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-              <td>Customer Email:</td>
-              <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-              <td>Customer Phone Number:</td>
-              <td>{{ user.phoneNumber }}</td>
-            </tr>
-          </table>
+        <!-- Customer Details Table -->
+        <h3 class="table-heading"><i class="fas fa-users"></i> Customer Details:</h3>
+        <table>
+          <tr><th>Label : </th> <th>Details : </th>  </tr>
+          <tr>
+            <td>Customer Name:</td>
+            <td>{{ user.userName }}</td>
+          </tr>
+          <tr>
+            <td>Customer First Name:</td>
+            <td>{{ user.firstName }}</td>
+          </tr>
+          <tr>
+            <td>Customer Last Name:</td>
+            <td>{{ user.lastName }}</td>
+          </tr>
+          <tr>
+            <td>Customer Email:</td>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+            <td>Customer Phone Number:</td>
+            <td>{{ user.phoneNumber }}</td>
+          </tr>
+        </table>
 
-          <hr>
+        <hr>
 
-          <!-- Book Details Table -->
-          <h3 class="table-heading"><i class="fas fa-book"></i> Book Details:</h3>
-          <table>
-            <tr><th>Label : </th> <th>Details : </th>  </tr>
-            <tr>
-              <td>Book Title:</td>
-              <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-              <td>Book Author:</td>
-              <td>{{ book.author }}</td>
-            </tr>
-            <!-- Add other book-related details here -->
-          </table>
-          <hr>
-        </div>
-        <div v-else>
-          <p>Loading book rental profile... </p>
-
-        </div>
+        <!-- Book Details Table -->
+        <h3 class="table-heading"><i class="fas fa-book"></i> Book Details:</h3>
+        <table>
+          <tr><th>Label : </th> <th>Details : </th>  </tr>
+          <tr>
+            <td>Book Title:</td>
+            <td>{{ book.title }}</td>
+          </tr>
+          <tr>
+            <td>Book Author:</td>
+            <td>{{ book.author }}</td>
+          </tr>
+          <!-- Add other book-related details here -->
+        </table>
+        <hr>
+      </div>
+      <div v-else>
+        <p>Loading book rental profile... </p>
 
       </div>
-      </form>
     </div>
   </div>
-
 </template>
 
 
@@ -214,6 +208,20 @@ span {
   font-weight: bold;
   margin-top: 50px;
   text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 5px;
+  text-align: left;
+}
+
+table th {
+  width: 30%;
 }
 
 /* Media query for narrow screens */

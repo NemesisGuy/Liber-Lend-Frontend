@@ -1,41 +1,35 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
-<!--      <div class="user-profile">-->
-        <form>
-        <h1>User Profile</h1>
-        <div v-if="user" class="profile-details">
-          <div>
-            <label>Username:</label>
-            <span>{{ user.userName }}</span>
-          </div>
-          <div>
-            <label>Email:</label>
-            <span>{{ user.email }}</span>
-          </div>
-          <div>
-            <label>First Name:</label>
-            <span>{{ user.firstName }}</span>
-          </div>
-          <div>
-            <label>Last Name:</label>
-            <span>{{ user.lastName }}</span>
-          </div>
-          <div>
-            <label>Phone Number:</label>
-            <span>{{ user.phoneNumber }}</span>
-          </div>
-          <div>
-            <label>Role:</label>
-            <span>{{ user.role }}</span>
-          </div>
-        </div>
-        <div v-else>
-          <loading-modal v-if="loading" />
-          Loading user profile...
-        </div>
-        </form>
-<!--      </div>-->
+  <div class="user-profile">
+    <h1>User Profile</h1>
+    <div v-if="user" class="profile-details">
+      <div>
+        <label>Username:</label>
+        <span>{{ user.userName }}</span>
+      </div>
+      <div>
+        <label>Email:</label>
+        <span>{{ user.email }}</span>
+      </div>
+      <div>
+        <label>First Name:</label>
+        <span>{{ user.firstName }}</span>
+      </div>
+      <div>
+        <label>Last Name:</label>
+        <span>{{ user.lastName }}</span>
+      </div>
+      <div>
+        <label>Phone Number:</label>
+        <span>{{ user.phoneNumber }}</span>
+      </div>
+      <div>
+        <label>Role:</label>
+        <span>{{ user.role }}</span>
+      </div>
+    </div>
+    <div v-else>
+      <loading-modal v-if="loading" />
+      Loading user profile...
     </div>
   </div>
 </template>

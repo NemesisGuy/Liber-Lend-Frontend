@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="user-selection-container">
+    <div class="card user-list-card">
       <h2>User List</h2>
       <input type="text" v-model="searchQuery" placeholder="Search User" />
       <ul>

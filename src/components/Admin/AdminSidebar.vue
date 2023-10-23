@@ -20,9 +20,9 @@
       <li>
         <router-link to="/admin/test">Test</router-link>
       </li>
-      <li>
+<!--      <li>
         <router-link to="/rental/return/1">Rental Return</router-link>
-      </li>
+      </li>-->
     </ul>
   </div>
 

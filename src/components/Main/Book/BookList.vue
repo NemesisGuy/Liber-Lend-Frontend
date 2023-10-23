@@ -1,8 +1,14 @@
 <template>
   <div class="content-container">
-    <h1>List of {{ genre }} Books</h1>
+<!--    cast first letter of genre  to capital letter-->
+
+    <h1>List of Available {{ genre.charAt(0).toUpperCase() + genre.slice(1) }} Books</h1>
     <loading-modal v-if="loading" show />
-    <table>
+    <div v-if="books.length === 0">
+      <h4>No {{ genre.charAt(0).toUpperCase() + genre.slice(1) }} books are currently available.</h4>
+    </div>
+    <table v-if="books.length > 0">
+
       <thead>
       <tr>
         <th @click="sortBooks('id')">ID</th>
@@ -55,10 +61,17 @@ export default {
   methods: {
     fetchBooks() {
       this.loading = true;
+
       const genre = this.$route.params.genre;
+      const available = this.$route.params.available === 'true'; // Convert the string to boolean
+      let endpoint = `http://localhost:8080/api/books/list/${genre}`;
+
+      if (available) {
+        endpoint = `http://localhost:8080/api/books/list/available/${genre}`;
+      }
 
       axios
-          .get(`http://localhost:8080/api/books/list/${genre}`)
+          .get(`http://localhost:8080/api/books/list/available/${genre}`)
           .then((response) => {
             this.books = response.data;
             this.genre = genre;

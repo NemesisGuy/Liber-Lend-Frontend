@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-sm navbar-custom">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">
-        <img alt="Logo" class="logo" src="../../assets/OntheGoRentals-Logo-Round-Clear.PNG">
+        <img alt="Logo" class="logo" src="../../assets/Liber-Lend-3-48.png">
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,15 +10,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+<!--          <li class="nav-item">
             <router-link to="/nav/user/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/nav/user/signup" class="nav-link">Signup</router-link>
-          </li>
+          </li>-->
           <li class="nav-item">
             <router-link to="/admin" class="nav-link">Admin Dashboard</router-link>
           </li>
+
+
         </ul>
       </div>
     </div>

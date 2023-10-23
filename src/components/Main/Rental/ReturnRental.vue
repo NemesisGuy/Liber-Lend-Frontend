@@ -1,8 +1,7 @@
 <template>
-  <div class="card-container card-container-admin">
-    <div class="form-container-admin">
+  <div class="container">
+    <div class="content-container">
       <div class="return-container">
-        <form>
         <h1>Return Book</h1>
         <div v-if="selectedRental" class="rental-details">
           <p><strong>ID:</strong> {{ selectedRental.id }}</p>
@@ -13,7 +12,6 @@
           <p><strong>Total Amount:</strong> {{ selectedRental.totalAmount }}</p>
         </div>
         <button v-if="selectedRental" class="return-button" @click="showConfirmationModal = true">Confirm Return</button>
-        </form>
       </div>
     </div>
   </div>
