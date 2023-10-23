@@ -79,7 +79,9 @@
     border-radius: 10px;
     box-shadow: 0px 0px 2px 0px #000;
 }
-
+.modal-test-container-height{
+    height: 40%;
+}
 
 
 .footer {
@@ -205,6 +207,15 @@ nav a:active {
     background-color: #fff;
     border-radius: 2px;
     padding: 20px;
+}
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+    margin: 2rem;
 }
 
 /*  ----------------------------------------     Sidebar Styles     -------------------------------------------------- */
@@ -476,7 +487,9 @@ button {
     background-color: #2196f3;
     height: 40px;
 }
-
+.modal-button-width{
+    width: 220px;
+}
 .search-bar {
     margin-bottom: 1rem;
 }

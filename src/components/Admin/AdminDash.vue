@@ -38,16 +38,7 @@ import RentalDurations from "@/components/Admin/Charts/RentalDurations.vue";
 </template>
 
 <style scoped>
-.graph-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: inherit;
-  height: inherit;
-  margin: 2rem;
 
-}
 
 
 
