@@ -1,6 +1,7 @@
 <template>
-  <div class="card-container">
-    <div class="book-profile">
+  <div class="card-container card-container-admin">
+    <div class="form-container-admin">
+      <form>
         <h1>Reservation Profile</h1>
         <div class="profile-details" v-if="reservation">
           <div>
@@ -20,6 +21,7 @@
         <div v-else>
           <p>Loading reservation profile...</p>
         </div>
+      </form>
     </div>
   </div>
 </template>

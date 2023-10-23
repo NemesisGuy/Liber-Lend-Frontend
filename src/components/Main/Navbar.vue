@@ -17,6 +17,9 @@
             <router-link to="/nav/user/signup" class="nav-link">Signup</router-link>
           </li>-->
           <li class="nav-item">
+            <router-link to="/reservation" class="nav-link">Reservation</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/admin" class="nav-link">Admin Dashboard</router-link>
           </li>
 
@@ -73,3 +76,5 @@
   padding-top: 80px; /* Add padding to the top to prevent content from going under the navigation */
 }
 </style>
+<script setup>
+</script>

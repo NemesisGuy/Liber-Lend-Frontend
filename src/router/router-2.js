@@ -10,6 +10,7 @@ import ConfirmationModal from "@/components/Main/Modals/ConfirmationModal.vue";
 import adminRoutes from './adminRoutes';
 import adminBookRoutes from './adminBookRoutes';
 import adminUserRoutes from './adminUserRoutes';
+import adminReservationRoutes from "./adminReservationRoutes";
 
 const router2 = createRouter({
     history: createWebHistory(),
@@ -50,6 +51,7 @@ const router2 = createRouter({
                 ...adminRoutes,
                 ...adminBookRoutes,
                 ...adminUserRoutes,
+                ...adminReservationRoutes,
             ],
         },
         {

@@ -17,7 +17,8 @@ import ReturnRental from "@/components/Main/Rental/ReturnRental.vue";
 import CreateRental from "@/components/Admin/Rental/CreateRental.vue";
 import Login from "@/components/Main/Login.vue";
 import Signup from "@/components/Main/Signup.vue";
-
+import Booking from "@/components/Main/Reservation/Reservation.vue";
+import adminReservationRoutes from "./adminReservationRoutes";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -68,6 +69,11 @@ const router = createRouter({
             component: UserProfile,
         },
         {
+            path: '/reservation',
+            name: 'Reservation',
+            component: Booking,
+        },
+        {
             path: '/admin',
             component: AdminPage,
             children: [
@@ -75,6 +81,7 @@ const router = createRouter({
                 ...adminBookRoutes,
                 ...adminUserRoutes,
                 ...adminRentalRoutes,
+                ...adminReservationRoutes,
             ],
         },
 

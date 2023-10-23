@@ -1,237 +1,143 @@
 <template>
-  <div class="card-container">
+  <div class="admin-area">
+    <div class="sidebar" :class="{ expanded: isExpanded }">
+      <button class="toggle-button" @click="toggleSidebar">
 
-    <div v-if="loading" class="loading">Loading...</div>
-    <loading-modal v-if="loading" show></loading-modal>
-    <div class="rental-profile">
-      <div class="profile-header">
-        <h1><i class="fas fa-book-reader"></i> Book Rental Profile</h1>
 
-        <hr>
+        {{ isExpanded ? 'Collapse' : 'Expand' }}
+      </button>
+      <div class="sidebar-container">
+        <ul>
+          <li>
+            <router-link to="/admin/dashboard">
+              <i class="fas fa-chart-bar"></i>
+              <span class="menu-text" v-show="isExpanded">Dashboard</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/admin/books">
+              <i class="fas fa-book"></i>
+              <span class="menu-text" v-show="isExpanded">Book Management</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/admin/users">
+              <i class="fas fa-users"></i>
+              <span class="menu-text" v-show="isExpanded">User Management</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/admin/rentals">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="menu-text" v-show="isExpanded">Rental Management</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/admin/test">
+              <i class="fas fa-cogs"></i>
+              <span class="menu-text" v-show="isExpanded">Test</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/rental/return/1">
+              <i class="fas fa-undo"></i>
+              <span class="menu-text" v-show="isExpanded">Rental Return</span>
+            </router-link>
+          </li>
+        </ul>
       </div>
-      <div class="profile-details" v-if="rental && user && book">
-        <!-- Rental Details Table -->
-        <h3 class="table-heading"><i class="fas fa-file-contract"></i> Rental Details:</h3>
-
-        <table>
-          <tr><th>Label : </th> <th>Details : </th>  </tr>
-          <tr>
-            <td>Rental ID:</td>
-            <td>{{ rental.id }}</td>
-          </tr>
-          <tr>
-            <td>Rental Date:</td>
-            <td>{{ rental.issuedDate }}</td>
-          </tr>
-          <tr>
-            <td>Return Date:</td>
-            <td>{{ rental.returnedDate }}</td>
-          </tr>
-          <tr>
-            <td>Fine:</td>
-            <td>{{ rental.fine }}</td>
-          </tr>
-        </table>
-
-        <hr>
-
-        <!-- Customer Details Table -->
-        <h3 class="table-heading"><i class="fas fa-users"></i> Customer Details:</h3>
-        <table>
-          <tr><th>Label : </th> <th>Details : </th>  </tr>
-          <tr>
-            <td>Customer Name:</td>
-            <td>{{ user.userName }}</td>
-          </tr>
-          <tr>
-            <td>Customer First Name:</td>
-            <td>{{ user.firstName }}</td>
-          </tr>
-          <tr>
-            <td>Customer Last Name:</td>
-            <td>{{ user.lastName }}</td>
-          </tr>
-          <tr>
-            <td>Customer Email:</td>
-            <td>{{ user.email }}</td>
-          </tr>
-          <tr>
-            <td>Customer Phone Number:</td>
-            <td>{{ user.phoneNumber }}</td>
-          </tr>
-        </table>
-
-        <hr>
-
-        <!-- Book Details Table -->
-        <h3 class="table-heading"><i class="fas fa-book"></i> Book Details:</h3>
-        <table>
-          <tr><th>Label : </th> <th>Details : </th>  </tr>
-          <tr>
-            <td>Book Title:</td>
-            <td>{{ book.title }}</td>
-          </tr>
-          <tr>
-            <td>Book Author:</td>
-            <td>{{ book.author }}</td>
-          </tr>
-          <!-- Add other book-related details here -->
-        </table>
-        <hr>
-      </div>
-      <div v-else>
-        <p>Loading book rental profile... </p>
-
-      </div>
+    </div>
+    <div class="admin-content-area" :class="{ expanded: isExpanded }">
+      <!-- Main content goes here -->
+      <router-view name="adminContent"></router-view>
     </div>
   </div>
 </template>
 
-
-
 <script>
-import axios from 'axios';
-import LoadingModal from "@/components/Main/Modals/LoadingModal.vue";
-
 export default {
-  name: 'ViewRental',
-  components: { LoadingModal },
+  name: "AdminPage",
   data() {
     return {
-      loading: false,
-      rental: null,
-      user: null,
-      book: null,
+      isExpanded: false
     };
   },
-  mounted() {
-    this.fetchRentalProfile();
-  },
   methods: {
-    fetchRentalProfile() {
-      this.loading = true; // Set loading to true when you start loading data
-
-      const rentalId = this.$route.params.id;
-      console.log("RentalView received this param, rentalId: " + rentalId); // Debug statement
-
-      axios
-          .get(`http://localhost:8080/api/admin/rentals/read/${rentalId}`)
-          .then((response) => {
-            this.rental = response.data;
-            console.log(this.rental.data);
-            this.fetchUserProfile();
-            this.fetchBookProfile();
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => {
-            this.loading = false; // Set loading to false when all data has been fetched or in case of errors
-          });
-    },
-    fetchUserProfile() {
-      const userId = this.rental.user.id;
-
-      axios
-          .get(`http://localhost:8080/api/admin/users/read/${userId}`)
-          .then((response) => {
-            this.user = response.data;
-            console.log(this.user.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    },
-    fetchBookProfile() {
-      const bookId = this.rental.book.id;
-
-      axios
-          .get(`http://localhost:8080/api/admin/books/read/${bookId}`)
-          .then((response) => {
-            this.book = response.data;
-            console.log(this.book.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    },
-  },
+    toggleSidebar() {
+      this.isExpanded = !this.isExpanded;
+    }
+  }
 };
 </script>
 
-<style scoped>
-.card-container {
+<style>
+.admin-area {
   display: flex;
-  padding: 50px;
+  height: auto;/* Set height to 100% */
+  min-height: 100vh;
+  width: 100%; /* Set width to 100% */
+}
+.content-container {
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 80px;
+  background-color:  #0056b3; /* Darker blue  */
+
+  transition: width 0.3s;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.sidebar.expanded {
+  width: 300px;
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #6610f2;
+  display: flex;
   justify-content: center;
-
-}
-.rental-profile {
-  margin-top: 20px;
-}
-
-.rental-profile h1 {
-  margin-bottom: 10px;
-}
-
-.profile-details {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.section {
-  flex: 1 1 50%;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-.detail-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.detail-row > div {
-  flex: 1 1 50%;
-  display: flex;
   align-items: center;
 }
 
-label {
-  font-weight: bold;
+.sidebar-container {
+  flex: 1; /* Use flex property to allow sidebar to grow */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.admin-content-area {
+  flex: 3; /* Use flex property to allow content area to grow */
+
+  transition: margin-left 0.3s;
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: auto; /* Enable vertical scrolling */
+
+
+
+}
+
+.sidebar-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-container ul li {
+  padding: 10px;
+}
+
+.sidebar-container ul li i {
   margin-right: 10px;
 }
 
-span {
-  margin-right: 10px;
-}
-.table-heading {
-  font-weight: bold;
-  margin-top: 50px;
-  text-align: center;
+.sidebar-container ul li .menu-text {
+  display: none;
 }
 
-table {
-  width: 100%;
-}
-
-table th,
-table td {
-  padding: 5px;
-  text-align: left;
-}
-
-table th {
-  width: 30%;
-}
-
-/* Media query for narrow screens */
-@media (max-width: 500px) {
-  .profile-details {
-    flex-direction: column; /* Stack sections vertically */
-  }
-
-  .section {
-    margin-right: 0;
-  }
+.sidebar.expanded ul li .menu-text {
+  display: inline;
 }
 </style>
