@@ -33,6 +33,12 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/admin/rentals">
+              <i class="far fa-calendar-alt"></i> span class="menu-text" v-show="isExpanded">Reservation Management</span> <!-- Updated text -->
+            </router-link>
+          </li>
+
+          <li>
             <router-link to="/admin/test">
               <i class="fas fa-cogs"></i>
               <span class="menu-text" v-show="isExpanded">Test</span>
