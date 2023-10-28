@@ -19,6 +19,18 @@
           <li class="nav-item">
             <router-link to="/admin" class="nav-link">Admin Dashboard</router-link>
           </li>
+          <li>
+            <router-link to="/user/profile/profile" class="nav-link">
+              <i class="fas fa-user"></i> User Profile
+            </router-link>
+          </li>
+
+<!--
+
+          <li>
+            <router-link to="/signout" class="nav-link">Sign Out</router-link>
+          </li>
+-->
 
 
         </ul>
@@ -73,3 +85,5 @@
   padding-top: 80px; /* Add padding to the top to prevent content from going under the navigation */
 }
 </style>
+<script setup>
+</script>

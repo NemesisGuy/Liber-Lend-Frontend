@@ -25,6 +25,11 @@
       </div>
     </form>
   </div>
+
+  <div class="modal-body">
+    <success-modal :show="successModal.show" @close="closeModal" :message="successModal.message" />
+    <failure-modal :show="failureModal.show" @close="closeModal" :message="failureModal.message" />
+  </div>
   <!-- Your other content -->
 </template>
 
@@ -33,91 +38,86 @@ import LoadingModal from "@/components/Main/Modals/LoadingModal.vue";
 import SuccessModal from "@/components/Main/Modals/SuccessModal.vue";
 import FailureModal from "@/components/Main/Modals/FailureModal.vue";
 import axios from "axios";
+import ConfirmationModal from "@/components/Main/Modals/ConfirmationModal.vue";
 
 export default {
+  computed: {
+  },
   components: {
     LoadingModal,
     SuccessModal,
     FailureModal,
-
+    ConfirmationModal,
   },
   data() {
     return {
       userName: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
       email: "",
       password: "",
-      showLoadingModal: false,
-      showSuccessModal: false,
-      showFailureModal: false,
       successMessage: "",
-      failureMessage: ""
+      failureMessage: "",
+      errorMessage: '',
+      loadingModal: false,
+      successModal: {show:false, message: ""},
+      failureModal: {show:false, message: ""},
+      confirmationModal: {show:false, message: ""},
+
     };
   },
   methods: {
     register() {
-      this.showLoadingModal = true;
+      this.loadingModal= true;
       axios
-          .post("http://localhost:8080/api/users/register", {
+          .post("http://localhost:8080/api/user/register", {
 
-            userName: this.userName,
+            firstName: this.firstName,
+            lastName: this.lastName,
             email: this.email,
             password: this.password
+
+            //user authenticators
           })
           .then(response => {
             // Handle success
+            console.log("Registration successful");
             console.log(response);
-            this.showLoadingModal = false;
-            this.showSuccessModal = true;
-            this.successMessage = "Registration successful";
+            this.loadingModal = false;
 
+            const token = response.data.accessToken; // Assuming response.data contains the token
+            // Save the token to the store
+            store.commit('setToken', token);//vuex
+            console.log("Response token:  " + token); // Output the value of the token
+            // console.log("Current stored token:  " +store.state.token); // Output the value of the token
+            // Assuming you have received and stored the token in response.data.accessToken
+            localStorage.setItem('token', response.data.accessToken);
+            this.successModal.message = "Registration successful";
+            this.successModal.show = true;
+            //  localStorage.setItem('token', null);//this will log the users out
+            //implement as button to nav or profile from to loge the user out
+
+            this.$router.push( {name : "Home"} );//redirects to home page
           })
           .catch(error => {
             // Handle error
+            this.loadingModal= false;
+            console.log("An error occurred: registration failed");
             console.log(error);
-            this.showLoadingModal = false;
-            this.showFailureModal = true;
-            this.failureMessage = "Registration failed";
+            this.successModal.show = false;
+            this.failureModal.show = true;
+            this.failureModal.message = "Registration failed";
           });
     },
     goToLogin() {
-      // this.$router.push("/login");
-      this.$router.push({ name: 'Login' });
-
+      this.$router.push({name: 'Login'});//redrects to login page
     },
-    performAction() {
-      // Show loading modal while waiting for the server response
-      this.showLoadingModal = true;
-
-      // Simulate a server request with a delay
-      setTimeout(() => {
-        // Simulate a successful action
-        this.showLoadingModal = false;
-        this.showSuccessModal = true;
-        this.successMessage = "Action successful";
-      }, 2000);
+    closeModal() {
+      this.showConfirmationModal = false;
+      this.successModal.show = false;
+      this.failureModal.show = false;
     },
-    confirmSuccessModal() {
-      this.showSuccessModal = false;
-      // Perform any additional actions or navigate to another page
-      // For example, you can redirect to the login page after a successful registration
-      this.$router.push('/nav/user/login');
-    },
-
-    performFailureAction() {
-// Show loading modal while waiting for the server response
-      this.showLoadingModal = true;
-      // Simulate a server request with a delay
-      setTimeout(() => {
-        // Simulate a failed action
-        this.showLoadingModal = false;
-        this.showFailureModal = true;
-        this.failureMessage = 'Action failed';
-      }, 2000);
-    },
-    confirmFailureModal() {
-      this.showFailureModal = false;
-      // Perform any additional actions or handle the failure case
-    }
   }
 };
 </script>

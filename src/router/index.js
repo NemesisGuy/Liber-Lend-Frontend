@@ -15,8 +15,8 @@ import adminRentalRoutes from "@/router/adminRentalRoutes";
 import Rental from "@/components/Main/Rental/Rental.vue";
 import ReturnRental from "@/components/Main/Rental/ReturnRental.vue";
 import CreateRental from "@/components/Admin/Rental/CreateRental.vue";
-import Login from "@/components/Main/Login.vue";
-import Signup from "@/components/Main/Signup.vue";
+import Login from "@/components/Main/User/Login.vue";
+import Signup from "@/components/Main/User/Signup.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -67,6 +67,7 @@ const router = createRouter({
             name: 'UserProfile',
             component: UserProfile,
         },
+
         {
             path: '/admin',
             component: AdminPage,
@@ -76,6 +77,11 @@ const router = createRouter({
                 ...adminUserRoutes,
                 ...adminRentalRoutes,
             ],
+        },
+        {
+            path: '/user/profile/profile',
+            name: 'UserProfile',
+            component: UserProfile,
         },
 
 
