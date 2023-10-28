@@ -10,12 +10,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-<!--          <li class="nav-item">
+          <li class="nav-item">
             <router-link to="/nav/user/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/nav/user/signup" class="nav-link">Signup</router-link>
-          </li>-->
+          </li>
           <li class="nav-item">
             <router-link to="/admin" class="nav-link">Admin Dashboard</router-link>
           </li>
